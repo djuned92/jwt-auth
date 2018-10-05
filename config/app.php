@@ -178,7 +178,10 @@ return [
         App\Providers\RouteServiceProvider::class,
         // jwt auth
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        // api documentation
         L5Swagger\L5SwaggerServiceProvider::class,
+        // pdf
+        niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
 
     ],
 
@@ -228,7 +231,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        // pdf
+        'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class,
     ],
 
 ];
