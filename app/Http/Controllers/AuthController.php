@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Tymon\JWTAuth\Facades\JWTFactory;
 
 class AuthController extends Controller
 {
@@ -13,7 +14,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('jwt', ['except' => ['login']]);
     }
 
     /**
@@ -28,6 +29,14 @@ class AuthController extends Controller
         if (! $token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
+
+        // $customClaims = ['foo' => 'bar', 'baz' => 'bob'];
+
+        // $payload = JWTFactory::make($customClaims);
+
+        // $token = JWTAuth::encode($payload);
+
+        // $token = auth()->claims(['foo' => 'bar'])->attempt($credentials);
 
         return $this->respondWithToken($token);
     }
